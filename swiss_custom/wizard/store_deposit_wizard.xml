@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_store_deposit_wizard" model="ir.ui.view">
+        <field name="name">store.deposit.wizard.form</field>
+        <field name="model">store.deposit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Store Deposit Report">
+                <group>
+                    <field name="date_start" />
+                    <field name="date_end" />
+                </group>
+                <footer>
+                    <button name="generate_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_store_deposit" model="ir.actions.act_window">
+        <field name="name">Store Deposit Report</field>
+        <field name="res_model">store.deposit.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_store_deposit_report" name="Store Deposit Report" action="action_store_deposit" parent="point_of_sale.menu_point_rep" sequence="6"/>
+</odoo>

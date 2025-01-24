@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="point_of_sale.PaymentScreenButtons" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('payment-buttons')]" position="inside">
+            <div class="py-3 rounded-0 border-bottom text-bg-view">
+                <img class="payment-method-icon" src="/point_of_sale/static/src/img/card-bank.png" />
+                <input class="border-0 mx-2" type="text" style="min-width: 60px;width: initial;display: initial;" placeholder="Card Number" t-ref="card_no_input" t-on-input="() => this._updateCardNo()"/>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

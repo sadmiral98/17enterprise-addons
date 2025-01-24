@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_head_shop_wizard" model="ir.ui.view">
+        <field name="name">head.shop.wizard.form</field>
+        <field name="model">head.shop.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Branch Report">
+                <group>
+                    <field name="date_start" />
+                    <field name="date_end" />
+                </group>
+                <footer>
+                    <button name="generate_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_head_shop" model="ir.actions.act_window">
+        <field name="name">Branch Report</field>
+        <field name="res_model">head.shop.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_head_shop_report" name="Branch Report" action="action_head_shop" parent="point_of_sale.menu_point_rep" sequence="6"/>
+</odoo>

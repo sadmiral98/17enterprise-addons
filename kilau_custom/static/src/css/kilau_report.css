@@ -1,0 +1,132 @@
+.page {
+    page-break-after: always;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.logo {
+    max-height: 200px;
+}
+
+.page-title {
+    color: #002766;
+    font-size: 21px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.watermark-container {
+    position: relative;
+}
+
+.watermark {
+    background-image: url('/kilau_custom/static/src/img/report/klarise_kl_wm.png'); /* Adjust the path to your watermark image */
+    background-repeat:repeat-y;
+    background-size:contain;
+    position: absolute;
+    opacity: 0.1;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.dashed-border {
+    border-top: 2px dashed #e7e7e7;
+    margin: 20px 5;
+    margin-top: 20px;
+}
+
+
+.main-table {
+    width: 100%;
+    font-size: 19px;
+    color: #002766;
+    margin: 7mm;
+}
+
+.table-borderless {
+    border-collapse: collapse;
+}
+
+.product-category {
+    margin-top: 10px;
+    color: #4b494a;
+    font-size: 21px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 35px;
+}
+
+.product-table {
+    width: 98%;
+    margin-top: 5mm;
+    margin-left: 5.5mm;
+    font-size: 21px;
+    color: #4e4e4e;
+}
+
+.quantity {
+    font-size: 18px;
+    margin-left: 10mm;
+    margin-top: 5mm;
+}
+
+.discount {
+    font-size: 18px;
+    margin-left: 10mm;
+    margin-top: 5mm;
+}
+
+.footer {
+    margin-top: 20px;
+    color: #a0a0a0;
+    margin-left: 4mm;
+    margin-right: 4mm;
+}
+
+.contact {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.email {
+    text-align: center;
+    margin-top: 30px;
+    color: #010101;
+    font-size: 20px;
+}
+
+.page-number {
+    text-align: center;
+}
+
+.total {
+    font-weight: bold;
+    color: #4b4b4b;
+    font-size: 21px;
+}
+
+.total-amount {
+    font-weight: bold;
+    color: #012769;
+    font-size: 24px;
+}
+
+.terms-condition {
+    margin-top: 20px;
+    color: #a0a0a0;
+    margin-left: 5mm;
+    margin-right: 5mm;
+}
+
+.help {
+    text-align: center;
+    margin-top: 30px;
+    color: #00286d;
+    font-size: 20px;
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Reporting menu -->
+    <!-- <menuitem id="menu_head_shop_report"
+        name="Branch Report"
+        action="action_head_shop"
+        parent="point_of_sale.menu_point_rep"
+        sequence="6"/>
+
+    <menuitem id="menu_store_deposit_report"
+        name="Store Deposit Report"
+        action="action_store_deposit"
+        parent="point_of_sale.menu_point_rep"
+        sequence="7"/> -->
+
+    <menuitem 
+        id="menu_swiss_report_production" 
+        name="Production"
+        parent="mrp.menu_mrp_reporting" 
+        sequence="100"/>
+
+     <menuitem
+        id="mrp_report_bs"
+        name="Report BS (XLSX)"
+        parent="menu_swiss_report_production"
+        action="swiss_custom.action_bs_wizard"
+        sequence="10"/>
+
+    <menuitem
+        id="mrp_report_branch_production"
+        name="Report Branch Production(XLSX)"
+        parent="menu_swiss_report_production"
+        action="swiss_custom.action_branch_production_wizard"
+        sequence="11"/>
+
+    <menuitem
+        id="mrp_report_recap_order"
+        name="Report Recap Order(XLSX)"
+        parent="menu_swiss_report_production"
+        action="swiss_custom.action_recap_order_wizard"
+        sequence="12"/>
+
+</odoo>

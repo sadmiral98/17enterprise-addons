@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit_kilau" model="ir.ui.view">
+        <field name="name">sale.order.view.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <page name="order_lines" position="after">
+                <page name="term_and_condition_page" string="Terms and Conditions">
+                    <field name="term_and_condition" />
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_head_shop_wizard,head_shop_wizard,model_head_shop_wizard,,1,1,1,1
+access_store_deposit_wizard,store_deposit_wizard,model_store_deposit_wizard,,1,1,1,1
+access_bs_wizard,bs_wizard,model_bs_wizard,,1,1,1,1
+access_branch_production_wizard,branch_production_wizard,model_branch_production_wizard,,1,1,1,1
+access_recap_order_wizard,recap_order_wizard,model_recap_order_wizard,,1,1,1,1
+
+access_swiss_company_groups,swiss_company_groups,model_swiss_company_groups,,1,1,1,1

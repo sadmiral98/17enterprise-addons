@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="tradmed_view_picking_form_inherit" model="ir.ui.view">
+        <field name="name">tradmed.view.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='do_print_picking']" position="before">
+                <button name="action_print_sample_collection" string="Print Sample Collection" type="object"/>
+            </xpath>
+            <xpath expr="//notebook[last()]" position="inside">
+                <page name="attachment" string="Sample Collection Details">
+                    <group>
+                        <group>
+                            <field name="name_material"/>
+                            <field name="number_lot"/>
+                            <field name="number_po"/>
+                            <field name="number_btb"/>
+                            
+                        </group>
+                        <group>
+                            <field name="name_factory"/>
+                            <field name="expired_date"/>
+                            <field name="plan"/>
+                            <field name="number_containers_received"/>                        
+                        </group>
+                        <group>
+                            <field name="number_containers_opened"/>
+                            <field name="number_containers_taken"/>
+                            <field name="sample_container"/>
+                            <field name="sample_tools"/>                        
+                        </group>
+                        <group>
+                            <field name="sampling_room"/>
+                            <field name="sampling_by"/>
+                            <field name="sampling_date"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_sample_collection" model="ir.actions.report">
+        <field name="name">Sample Collection Report</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tradmed_custom.sample_collection</field>
+        <field name="report_file">tradmed_custom.sample_collection_report</field>
+        <field name="print_report_name">'Sample Collection Report - %s - %s' % (object.partner_id.name or '', object.name)</field>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="paperformat_id" ref="tradmed_custom.paperformat_sample_collection"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

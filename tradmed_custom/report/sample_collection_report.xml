@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="sample_collection">
+            <t t-call="web.html_container">
+                <style type="text/css">
+                    .tg  {border-collapse:collapse;border-spacing:0;}
+                    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                    overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                    font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                    .tg .tg-0p91{border-color:inherit;font-family:"Times New Roman", Times, serif !important;text-align:center;vertical-align:top}
+                    .tg .tg-3wrp{border-color:inherit;font-family:"Times New Roman", Times, serif !important;font-size:18px;text-align:center;
+                    vertical-align:top}
+                    .tg .tg-iucd{border-color:inherit;font-family:"Times New Roman", Times, serif !important;text-align:left;vertical-align:top}
+                </style>
+                <t t-foreach="docs" t-as="o">
+                    <div class="header">
+                        <img t-att-src="'/tradmed_custom/static/image/tradmed.png'" style="float: left;max-height: 120px;" alt="Logo"/>
+                    </div>
+                    <div class="page">                        
+                        <table class="tg" style="undefined;table-layout: fixed; width: 100%">
+                            <colgroup>
+                                <col style="width: 138px" />
+                                <col style="width: 256px" />
+                                <col style="width: 256px" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <td class="tg-3wrp" rowspan="2">PT. KHALILA<br/>TRADMED INDONESIA<br/><br/><img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" alt="Logo" width="82" height="82" /></td>
+                                    <td class="tg-0p91" colspan="2">FORMULIR PENGAMBILAN SAMPLE<br/>No: FORM15.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-iucd">Disusun oleh<br/>Quality Control<br/><br/><br/><br/>Putri Nabila., A.Md. Farm<br/>01 Juni 2022</td>
+                                    <td class="tg-iucd">Halaman 1 dari 1<br/>Tanggal berlaku:<br/>01 Juli 2022</td>
+                                </tr>
+                            </thead>
+                        </table><br/><br/>
+                        <table style="border:1px solid grey;undefined;table-layout: fixed; width: 100%">
+                            <col style="width: 35%" />
+                            <col style="width: 1%" />
+                            <col style="width: 64%" />
+                            <tr height="35px;">
+                                <td>Nama Bahan Awal / Bahan Mentah</td>
+                                <td>:</td>
+                                <td><t t-esc="o.name_material"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Nomor Lot</td>
+                                <td>:</td>
+                                <td><t t-esc="o.number_lot"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Nomor PO</td>
+                                <td>:</td>
+                                <td><t t-esc="o.number_po"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Nomor BTB</td>
+                                <td>:</td>
+                                <td><t t-esc="o.number_btb"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Tanggal Datang</td>
+                                <td>:</td>
+                                <td><t t-esc="o.date_done.strftime('%d-%m-%Y')"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Nama Pemasok</td>
+                                <td>:</td>
+                                <td><t t-esc="o.partner_id.name"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Nama Pabrik Pembuat</td>
+                                <td>:</td>
+                                <td><t t-esc="o.name_factory"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Sertifikat Analisis</td>
+                                <td>:</td>
+                                <td><t t-esc="o.number_lot"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Tanggal Kadaluwarsa</td>
+                                <td>:</td>
+                                <td><t t-esc="o.expired_date"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Rencana</td>
+                                <td>:</td>
+                                <td><t t-esc="o.plan"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Jumlah wadah yang diterima</td>
+                                <td>:</td>
+                                <td><t t-esc="o.number_containers_received"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Jumlah wadah yang di buka</td>
+                                <td>:</td>
+                                <td><t t-esc="o.number_containers_opened"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Jumlah wadah yang diambil</td>
+                                <td>:</td>
+                                <td><t t-esc="o.number_containers_taken"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Wadah Sampel</td>
+                                <td>:</td>
+                                <td><t t-esc="o.sample_container"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Alat Sampling</td>
+                                <td>:</td>
+                                <td><t t-esc="o.sample_tools"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Ruang Pengambilan Sampel</td>
+                                <td>:</td>
+                                <td><t t-esc="o.sampling_room"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Sampling oleh</td>
+                                <td>:</td>
+                                <td><t t-esc="o.sampling_by"/></td>
+                            </tr>
+                            <tr height="35px;">
+                                <td>Tanggal Sampling</td>
+                                <td>:</td>
+                                <td><t t-esc="o.sampling_date"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-6">
+                                <div style="line-height: 1.5;">
+                                    <div><b>PT Khalila Tradmed Indonesia</b></div>
+                                    <div>Jl. Raden Patah No. 25, Plembon, RT 001, RW 002,</div>
+                                    <div>Ketandan, Klaten Utara, Klaten, Jawa Tengah, Indonesia, 57437</div>
+                                </div><br/>
+                                <div style="line-height: 1.5;">
+                                    <div><b>Marketing Office</b></div>
+                                    <div>Jl. Kopral Sayom No. 25B, RT 004/RW 009,</div>
+                                    <div>Bareng Lor, Klaten, Jawa Tengah, Indonesia, 57438</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="line-height: 1.5;">
+                                    <div><i class="fa fa-envelope"> office@tradmed.co.id</i></div>
+                                    <div><i class="fa fa-globe"> www.tradmed.co.id</i></div>
+                                    <div><i class="fa fa-instagram"> tradmed_official</i></div>
+                                    <div><i class="fa fa-youtube"> tradmed_official</i></div>
+                                    <div><i class="fa fa-facebook"> tradmed</i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

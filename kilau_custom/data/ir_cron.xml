@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="auto_reconcile_bank_statement_line" model="ir.cron">
+        <field name="name">Kilau: Auto-create commission bill</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="state">code</field>
+        <field name="code">model._run_auto_commission_bill()</field>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>hours</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>

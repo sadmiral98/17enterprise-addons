@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_head_shop_report" model="report.paperformat">
+        <field name="name">A4 - Head Shop Report</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="paperformat_cashier_deposit_report" model="report.paperformat">
+        <field name="name">A4 - Cashier Deposit Report</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="paperformat_store_deposit_report" model="report.paperformat">
+        <field name="name">A4 - Store Deposit Report</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">32</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="head_shop_report" model="ir.actions.report">
+        <field name="name">Branch Report</field>
+        <field name="model">pos.session</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">swiss_custom.report_headshop</field>
+        <field name="report_file">swiss_custom.report_headshop</field>
+        <field name="paperformat_id" ref="swiss_custom.paperformat_head_shop_report"/>
+        <field name="binding_view_types">report</field>
+    </record>
+
+    <record id="action_cashier_deposit_report" model="ir.actions.report">
+        <field name="name">Cashier Deposit Report</field>
+        <field name="model">pos.session</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">swiss_custom.cashier_deposit_report</field>
+        <field name="report_file">swiss_custom.cashier_deposit_report</field>
+        <field name="print_report_name">'Cashier Deposit Report'</field>
+        <field name="binding_model_id" ref="model_pos_session"/>
+        <field name="paperformat_id" ref="swiss_custom.paperformat_cashier_deposit_report"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="store_deposit_report" model="ir.actions.report">
+        <field name="name">Store Deposit Report</field>
+        <field name="model">pos.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">swiss_custom.report_storedeposit</field>
+        <field name="report_file">swiss_custom.report_storedeposit</field>
+        <field name="paperformat_id" ref="swiss_custom.paperformat_store_deposit_report"/>
+        <field name="binding_view_types">report</field>
+    </record>
+
+    <record id="action_report_bs_xlsx" model="ir.actions.report">
+        <field name="name">Report BS (XLSX)</field>
+        <field name="model">bs.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">swiss_custom.report_bs_xlsx</field>
+        <field name="report_file">swiss_custom.report_bs_xlsx</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_branch_production_xlsx" model="ir.actions.report">
+        <field name="name">Report Branch Production (XLSX)</field>
+        <field name="model">branch.production.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">swiss_custom.branch_production_xlsx</field>
+        <field name="report_file">swiss_custom.branch_production_xlsx</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_recap_order_xlsx" model="ir.actions.report">
+        <field name="name">Report Recap Order (XLSX)</field>
+        <field name="model">recap.order.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">swiss_custom.recap_order_xlsx</field>
+        <field name="report_file">swiss_custom.recap_order_xlsx</field>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

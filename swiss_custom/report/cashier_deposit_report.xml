@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="cashier_deposit_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col">
+                                    <t t-if="o.company_id.parent_id">
+                                        <div><h1><t t-esc="o.company_id.parent_id.name"/></h1></div>
+                                        <div style="margin-bottom:5px;"><t t-esc="o.company_id.parent_id.street"/></div>
+                                        <div>: <t t-esc="o.company_id.parent_id.city"/> <t t-esc="user.company_id.phone"/></div><br/>
+                                    </t>
+                                    <t t-else="">
+                                        <div><h1><t t-esc="o.company_id.name"/></h1></div>
+                                        <div style="margin-bottom:5px;"><t t-esc="o.company_id.street"/></div>
+                                        <div>: <t t-esc="o.company_id.city"/> <t t-esc="user.company_id.phone"/></div><br/>
+                                    </t>
+                                    <center>
+                                        <h1>BUKTI SETORAN KASIR</h1>
+                                        <p><hr style="border-color: black; width: 50%;"/></p>
+                                    </center>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-4"><b>Tanggal</b></div>
+                                                <div class="col-4">:</div>
+                                                <div class="col-4"><t t-esc="o.start_at and o.start_at.strftime('%Y-%m-%d') or ''"/> - <t t-esc="o.stop_at and o.stop_at.strftime('%Y-%m-%d') or ''"/></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div>OUTLET: <t t-esc="o.company_id.name"/></div>
+                                        </div>
+                                    </div><br/>
+                                    <table width="100%" style="border:1px solid black;font-size: 14px;">
+                                        <tr style="height:50px;">
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">No</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Kode Bayar</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Nama Bayar</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Setor</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Nilai Transaksi</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Selisih</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Kasir</div></th>
+                                        </tr>
+                                        <t t-set="no" t-value="0"/>
+                                        <t t-set="paid" t-value="0"/>
+                                        <t t-set="amount" t-value="0"/>
+                                        <t t-foreach="o.get_payment_details()" t-as="pay">
+                                            <t t-set="no" t-value="no + 1"/>
+                                            <t t-set="paid" t-value="paid + pay['paid']"/>
+                                            <t t-set="amount" t-value="amount + pay['amount']"/>
+                                            <tr style="height:40px;">
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="no"/></td>
+                                                <td class="text-center" style="font-size: 16px;">00<t t-esc="no"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="pay['name']"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="pay['amount']"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="pay['paid']"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="pay['amount'] - pay['paid']"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="pay['cashier']"/></td>
+                                            </tr>
+                                        </t>
+                                        <tr style="border:1px solid white;border-top:1px solid black;font-size: 14px;height:20px;">
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                        </tr>
+                                        <tr style="border:1px solid white;font-size: 14px;height:20px;">
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                            <td class="text-center" style="font-size: 16px;"><b>TOTAL:</b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="amount"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="paid"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="amount - paid"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"></td>
+                                        </tr>
+                                    </table><br/><br/><br/><br/><br/>
+                                    <div class="row">
+                                        <div class="col-1"/>
+                                        <div class="col-4">
+                                            <div class="text-center">Diterima Oleh,</div><br/><br/><br/><br/><br/><br/>
+                                            <div class="text-center">(_____________________)</div>
+                                        </div>
+                                        <div class="col-1"/>
+                                        <div class="col-1"/>
+                                        <div class="col-4">
+                                            <div class="text-center">Diserahkan Oleh,</div><br/><br/><br/><br/><br/><br/>
+                                            <div class="text-center">(_____________________)</div>
+                                        </div>
+                                        <div class="col-1"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-4"/>
+                                <div class="col-4 d-flex justify-content-end"><t t-esc="o.stop_at and o.stop_at.strftime('%A, %d %B %Y') or ''"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

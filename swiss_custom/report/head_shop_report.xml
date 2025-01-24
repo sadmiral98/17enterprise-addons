@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_headshop">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <p><h1><t t-esc="result"/>LAPORAN KEPALA TOKO</h1></p>
+                                    <p><hr style="border-color: black; width: 50%;"/></p>
+                                    <p><h3>SWISS HOUSE MATARAM</h3></p>
+                                    <p><h4><t t-esc="date_start"/> - <t t-esc="date_end"/></h4></p>
+                                </center>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div><b>Penjualan Retail</b></div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160; Kasir</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(cashier)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160; Setoran Kasir</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(cashier_deposit)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160; Setoran</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(deposit)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160; Nilai Discount</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> - </div>
+                                        </div><br/>
+                                        
+                                        <div><b>Penjualan</b></div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160; Penjualan</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(sale_regular)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160; Pembayaran</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(payment_regular)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160; Nilai Piutang 1</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(receivable)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4"><b>Total Penjualan</b></div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(sale_total)"/></div>
+                                        </div><br/>
+                                    </div>
+                                    
+                                    <div class="col-4">
+                                        <div><b>Pesanan Khusus</b></div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Pesanan</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(sale_special)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Serah</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(total_delivered)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4"><b>Jumlah Bayar</b></div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(payment_special)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Nilai Piutang 2</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(receivable_two)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;<b>Nilai Piutang 1+2</b></div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(receivable_all)"/></div>
+                                        </div><br/>
+                                        <div><b>Rincian Pembayaran</b></div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Pembayaran Lunas</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(settlement_payment)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;DP Pesanan</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(down_payment)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Pelunasan</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(repayment)"/></div>
+                                        </div><br/>
+                                    </div>
+                                    
+                                    <div class="col-4">
+                                        <div><b>Mutasi Stock</b></div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Stock Awal</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(stock_begin)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Penerimaan (DO)</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(receipt)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Retur (BS)</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(retur)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Kembali Baik(KB)</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(retur_good)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4"><b>Total Penjualan</b></div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(total_mutasi_order)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Stock Akhir</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(final_stock)"/></div>
+                                        </div><br/>
+                                        
+                                        <div><b>Selisih Stock</b></div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Stock Opname</div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(opname)"/></div>
+                                        </div><br/>
+                                        <div class="row">
+                                            <div class="col-4">&#160;&#160;&#160;&#160;Selisih Stock </div>
+                                            <div class="col-4">:</div>
+                                            <div class="col-4"> <t t-esc="'{0:,.2f}'.format(difference_stock)"/></div>
+                                        </div>
+                                    </div>
+                                </div><br/>
+                                <div class="row">
+                                    <table width="100%" class="table-borderless" style="font-size: 14px;">
+                                        <tr style="border-top:2px solid black;border-bottom:2px solid black;font-size: 14px;height:50px;" >
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Transaksi</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Jumlah Nilai Setoran</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Setoran Kasir</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Jumlah Bayar (Penjualan)</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Jumlah Bayar (Pesanan)</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Pembayaran Lunas</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">DP (Pesanan)</div></th>
+                                            <th class="text-center" style="font-size: 16px;"><div style="margin-top:15px;">Pelunasan (Pesanan)</div></th>
+                                        </tr>
+                                        <t t-set="deposit" t-value="0"/>
+                                        <t t-set="payments" t-value="0"/>
+                                        <t t-set="order" t-value="0"/>
+                                        <t t-set="settlement_payment" t-value="0"/>
+                                        <t t-set="down_payment" t-value="0"/>
+                                        <t t-set="repayment" t-value="0"/>
+                                        <t t-set="total_deposit" t-value="0"/>
+                                        <t t-foreach="payment" t-as="pay">
+                                            <t t-set="deposit" t-value="deposit + pay['deposit']"/>
+                                            <t t-set="payments" t-value="payments + pay['payment']"/>
+                                            <t t-set="order" t-value="order + pay['order']"/>
+                                            <t t-set="settlement_payment" t-value="settlement_payment + pay['settlement_payment']"/>
+                                            <t t-set="down_payment" t-value="down_payment + pay['down_payment']"/>
+                                            <t t-set="repayment" t-value="repayment + pay['repayment']"/>
+                                            <t t-set="total_deposit" t-value="total_deposit + pay['deposit'] + pay['payment'] + pay['order']"/>
+                                        </t>
+                                        <tr style="height:10px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr style="height:40px;">
+                                            <td style="font-size: 16px;"><b>Jumlah</b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="'{0:,.2f}'.format(total_deposit)"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="'{0:,.2f}'.format(deposit)"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="'{0:,.2f}'.format(payments)"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="'{0:,.2f}'.format(order)"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="'{0:,.2f}'.format(settlement_payment)"/></b></td>
+                                            <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(down_payment)"/></td>
+                                            <td class="text-center" style="font-size: 16px;"><b><t t-esc="'{0:,.2f}'.format(repayment)"/></b></td>
+                                        </tr>
+                                        <t t-foreach="payment" t-as="pay">
+                                            <tr style="height:40px;">
+                                                <td style="font-size: 16px;"><t t-esc="pay['name']"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(pay['deposit'] + pay['payment'] + pay['order'])"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(pay['deposit'])"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(pay['payment'])"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(pay['order'])"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(pay['settlement_payment'])"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(pay['down_payment'])"/></td>
+                                                <td class="text-center" style="font-size: 16px;"><t t-esc="'{0:,.2f}'.format(pay['repayment'])"/></td>
+                                            </tr>
+                                        </t>
+                                        <tr style="border-bottom:2px solid black;height:20px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

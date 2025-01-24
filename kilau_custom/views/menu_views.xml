@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_company_config" name="Companies Config" sequence="500"
+        web_icon="base,static/description/settings.png" groups="base.group_erp_manager" />
+
+</odoo>

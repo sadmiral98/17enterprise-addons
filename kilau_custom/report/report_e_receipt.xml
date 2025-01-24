@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_e_receipt_document">
+    <t t-foreach="docs" t-as="o">
+      <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
+          <link href="/kilau_custom/static/src/css/kilau_report.css" rel="stylesheet" />
+          <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)" />
+          <div class="page watermark-container">
+            <div class="watermark">
+            </div>
+            <div class="text-center">
+              <img class="logo" t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                alt="Logo" />
+            </div>
+
+            <div class="text-center page-title" >
+              Your Receipt
+            </div>
+            <h2 class="text-center" style="color: #002766;">
+              <strong>
+                <t t-out="o.name" /></strong>
+            </h2>
+            <div class="text-center" style="color: #242424; font-size: 14px; margin-top: 20px;">
+              <t t-out="o.company_id.partner_id.contact_address_complete" />
+            </div>
+            <t t-if="o.company_id.partner_id.phone">
+              <div class="text-center" style="color: #242424; font-size: 14px; margin-top: 10px;">
+                Telp : <t t-out="o.company_id.partner_id.phone" />
+              </div>
+            </t>
+            <t t-if="o.company_id.partner_id.mobile">
+              <div class="text-center" style="color: #242424; font-size: 14px; margin-top: 10px;">
+                WA : <t t-out="o.company_id.partner_id.mobile" />
+              </div>
+            </t>
+            <div class="dashed-border"></div>
+            <table class="table table-sm o_main_table table-borderless main-table">
+              <colgroup>
+                <col style="width: 38%;" />
+                <col style="width: 2%;" />
+                <col style="width: 60%;" />
+              </colgroup>
+              <tr>
+                <td style="text-align: left;">Agen</td>
+                <td><span>: </span></td>
+                <td style="text-align: left;">
+                  <t t-out="o.company_id.name" />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Cashier</td>
+                <td><span>: </span></td>
+                <td style="text-align: left;">
+                  <t t-out="o.user_id.name" />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Customer</td>
+                <td><span>: </span></td>
+                <td style="text-align: left;">
+                  <t t-out="o.partner_id.name" />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Date Receive</td>
+                <td><span>: </span></td>
+                <t t-if="o.date_order">
+                  <td style="text-align: left;">
+                    <t t-esc="o.date_order.strftime('%d/%m/%Y %H:%M:%S')" />
+                  </td>
+                </t>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Date Finish</td>
+                <td><span>: </span></td>
+                <t t-if="o.commitment_date">
+                  <td style="text-align: left;">
+                    <t t-esc="o.commitment_date.strftime('%d/%m/%Y %H:%M:%S')" />
+                  </td>
+                </t>
+              </tr>
+            </table>
+            <div class="dashed-border"></div>
+            <t t-foreach="o.order_line.sorted(key=lambda x: (x.product_template_attribute_value_ids.name or 'Other', x.id), reverse=False)"
+              t-as="line">
+              <t t-if="line.product_template_attribute_value_ids.name != previous_category">
+                <div class="product-category">
+                  <t t-out="line.product_template_attribute_value_ids.display_name or 'Other'" />
+                </div>
+                <t t-set="previous_category" t-value="line.product_template_attribute_value_ids.name" />
+              </t>
+              <table class="table table-sm o_main_table table-borderless product-table">
+                <tr>
+                  <td style="text-align: left;">
+                    <t t-out="line.product_id.name" />
+                  </td>
+                  <td style="text-align: right;">
+                    <t t-out="line.product_uom_qty * line.price_unit"
+                      t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                  </td>
+                </tr>
+              </table>
+              <div class="quantity">
+                <div style="text-align: left; color:#9d9d9d;">
+                  Quantity
+                </div>
+                <div style="margin-left:5mm;margin-top:1mm;">
+                  <div style="display: inline-block; text-align: left;">
+                    <t t-out="line.product_uom_qty" />
+                  </div>
+                  <div style="display: inline-block; text-align: left; color:#9d9d9d;"> x </div>
+                  <div style="display: inline-block; text-align: left; color:#9d9d9d;">
+                    <t t-out="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                  </div>
+                  <div style="display: inline-block; text-align: left; color:#9d9d9d;">
+                    /
+                  </div>
+                  <div style="display: inline-block; text-align: left; color:#9d9d9d;">
+                    <t t-out="line.product_uom.name" />
+                  </div>
+                </div>
+              </div>
+              <t t-if="line.discount">
+                <div class="discount">
+                  <div style="text-align: left; color:#9d9d9d;">
+                    Discount
+                  </div>
+                  <div style="margin-left:5mm;margin-top:1mm;">
+                    <div style="display: inline-block; text-align: left;">
+                      <t t-out="line.discount" />
+                    </div>
+                    <div style="display: inline-block; text-align: left; color:#9d9d9d;">
+                      %
+                    </div>
+                    <div style="display: inline-block; text-align: left; color:#9d9d9d;">
+                      <t t-out="(line.product_uom_qty * line.price_unit) * line.discount/100"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                    </div>
+                  </div>
+                </div>
+              </t>
+            </t>
+            <hr style="border-top: 3px solid #626262; border-top-width: bold;" />
+            <table class="table table-sm o_main_table table-borderless" style="width: 100%;font-size: 20px;">
+              <tr>
+                <td style="text-align: left;color:#626262;">Subtotal</td>
+                <td style="text-align: right;color:#626262;">
+                  <t t-out="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left; color: #626262;">Discount</td>
+                <td style="text-align: right; color: #626262;">
+                  <t t-out="o.amount_undiscounted - o.amount_untaxed"
+                    t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left; color: #626262;">Taxes</td>
+                <td style="text-align: right; color: #626262;">
+                  <t t-out="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left; font-weight: bold; color: #4b4b4b; font-size: 21px;">TOTAL</td>
+                <td style="text-align: right; font-weight: bold; color: #012769; font-size: 24px;">
+                  <t t-out="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                </td>
+              </tr>
+            </table>
+            <div class="dashed-border"></div>
+            <div t-if="o.term_and_condition" class="terms-condition">
+              <div t-raw="o.term_and_condition" />
+            </div>
+            <t t-if="o.company_id.parent_id">
+              <div class="text-center" style="color: #02276a; font-size: 21px; margin-top: 10px;">
+                <strong>
+                <t t-out="o.company_id.parent_id.name" /></strong>
+              </div>
+              <t t-if="o.company_id.parent_id.partner_id.contact_address_complete">
+                <div class="text-center" style="color: #242424; font-size: 14px; margin-top: 10px;">
+                  <t t-out="o.company_id.parent_id.partner_id.contact_address_complete" />
+                </div>
+              </t>
+              <t t-if="o.company_id.parent_id.partner_id.phone">
+                <div class="text-center" style="color: #242424; font-size: 14px; margin-top: 10px;">
+                  Telp : <t t-out="o.company_id.parent_id.partner_id.phone" />
+                </div>
+              </t>
+              <t t-if="o.company_id.parent_id.partner_id.mobile">
+                <div class="text-center" style="color: #242424; font-size: 14px; margin-top: 10px;">
+                  WA : <t t-out="o.company_id.parent_id.partner_id.mobile" />
+                </div>
+              </t>
+            </t>
+            <div class="help">
+              Feel free to email us if you need our help.
+            </div>
+            <div class="email">
+              <t t-out="o.company_id.partner_id.email" />
+            </div>
+            <div class="footer">
+              <div class="row">
+                <div class="col-xs-12 text-center">
+                  <small>
+                    <span>Page</span>
+                    <span class="page" />
+                    /
+                    <span class="topage" />
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+
+  <record id="paper_format_e_receipt" model="report.paperformat">
+    <field name="name">Kilau Receipt</field>
+    <field name="default" eval="True" />
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Portrait</field>
+    <field name="margin_top">10</field>
+    <field name="margin_bottom">15</field>
+    <field name="margin_left">15</field>
+    <field name="margin_right">15</field>
+    <field name="header_line" eval="False" />
+    <field name="header_spacing">20</field>
+    <field name="dpi">80</field>
+  </record>
+
+  <record id="action_report_expense_input" model="ir.actions.report">
+    <field name="name">Kilau Receipt</field>
+    <field name="model">sale.order</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">kilau_custom.report_e_receipt_document</field>
+    <field name="report_file">kilau_custom.report_e_receipt_document</field>
+    <field name="print_report_name">'e-receipt'</field>
+    <field name="binding_model_id" ref="sale.model_sale_order" />
+    <field name="binding_type">report</field>
+    <field name="paperformat_id" ref="kilau_custom.paper_format_e_receipt" />
+  </record>
+</odoo>
